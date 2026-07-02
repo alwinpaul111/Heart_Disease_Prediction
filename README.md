@@ -1,65 +1,209 @@
 # Heart Failure Mortality Prediction
 
-An end-to-end machine learning project for predicting heart failure mortality risk using clinical patient data. The project includes model artifacts, visual analysis, SHAP explainability, a FastAPI prediction API, and Docker deployment support.
+An upgraded machine learning project built in Google Colab for predicting heart disease / heart failure mortality risk from clinical health indicators. The project moves beyond a basic classroom notebook by adding advanced models, hyperparameter tuning, model explainability, experiment tracking, API deployment, and Docker support.
 
-## Project Highlights
+## Project Overview
 
-- XGBoost model for mortality risk prediction
-- Feature engineering for stronger predictive signals
-- SHAP explainability visualizations
-- FastAPI backend for real-time predictions
+This project follows a complete ML pipeline:
+
+1. Exploratory Data Analysis
+2. Feature Engineering and Preprocessing
+3. Baseline Model Training
+4. Advanced Model Training
+5. Hyperparameter Tuning with Optuna
+6. Model Evaluation and Comparison
+7. SHAP Explainability
+8. MLflow Experiment Tracking
+9. Model Saving
+10. FastAPI Deployment
+11. Docker Containerization
+12. GitHub Upload Package Creation
+
+## Key Features
+
+- Logistic Regression baseline model
+- Random Forest baseline model
+- XGBoost advanced model
+- LightGBM advanced model
+- Optuna hyperparameter tuning
+- SMOTE handling for class imbalance
+- SHAP explainability plots
+- MLflow experiment tracking
+- FastAPI prediction endpoint
 - Docker and Docker Compose deployment
-- Saved model artifacts for reproducible inference
-- Ready-to-upload GitHub project structure
-
-## Project Structure
-
-```text
-.
-├── main.py                    # FastAPI prediction API
-├── requirements.txt           # Python dependencies
-├── Dockerfile                 # Docker image definition
-├── docker-compose.yml         # Docker Compose service
-├── heart.csv                  # Dataset
-├── model/
-│   ├── xgb_model.pkl          # Trained XGBoost model
-│   ├── scaler.pkl             # Saved scaler
-│   └── features.json          # Feature order used by the model
-├── eda_plots.png              # Exploratory data analysis plots
-├── model_comparison.png       # Model comparison chart
-├── roc_curves.png             # ROC curve visualization
-├── shap_summary.png           # SHAP summary plot
-├── shap_importance.png        # SHAP feature importance plot
-├── shap_dependence.png        # SHAP dependence plot
-└── shap_waterfall.png         # SHAP waterfall explanation
-```
+- Saved trained model, scaler, and feature list
+- Ready-to-upload `github_upload` folder
 
 ## Tech Stack
 
 - Python
-- XGBoost
+- Google Colab
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
 - Scikit-learn
+- Imbalanced-learn
+- XGBoost
+- LightGBM
+- Optuna
+- SHAP
+- MLflow
 - FastAPI
 - Uvicorn
-- Pydantic
-- SHAP
 - Docker
 
-## Setup Instructions
+## Dataset
 
-Clone the repository:
+The project uses `heart.csv`.
 
-```bash
-git clone https://github.com/alwinpaul111/Heart-Disease-Prediction.git
-cd Heart-Disease-Prediction
+Target column:
+
+```text
+HeartDisease
 ```
 
-Create and activate a virtual environment:
+The notebook also creates engineered features from the available clinical columns, including:
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
+- `creatinine_phosphokinase_log`
+- `serum_creatinine_log`
+- `age_ejection_interaction`
+- `high_risk`
+
+## Repository Structure
+
+```text
+.
+├── Heart_Disease_Prediction_UPGRADED.ipynb
+├── heart.csv
+├── main.py
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+├── model/
+│   ├── xgb_model.pkl
+│   ├── scaler.pkl
+│   └── features.json
+├── eda_plots.png
+├── model_comparison.png
+├── roc_curves.png
+├── shap_summary.png
+├── shap_importance.png
+├── shap_dependence.png
+└── shap_waterfall.png
 ```
+
+## Google Colab Workflow
+
+Open the notebook:
+
+```text
+Heart_Disease_Prediction_UPGRADED.ipynb
+```
+
+Upload `heart.csv` to Colab, then run the notebook cells in order.
+
+The first cell installs the required libraries:
+
+```python
+!pip install xgboost lightgbm optuna shap mlflow fastapi uvicorn scikit-learn pandas numpy matplotlib seaborn imbalanced-learn -q
+```
+
+The notebook then performs:
+
+- data loading
+- EDA visualization
+- feature engineering
+- one-hot encoding
+- train-test split
+- scaling
+- SMOTE oversampling
+- baseline model training
+- advanced model training
+- Optuna tuning
+- SHAP explanation generation
+- MLflow logging
+- model export
+- FastAPI app creation
+- Docker file creation
+- GitHub upload ZIP creation
+
+## Models Used
+
+### Baseline Models
+
+- Logistic Regression
+- Random Forest
+
+### Advanced Models
+
+- XGBoost
+- LightGBM
+
+### Tuned Model
+
+The final deployed model is an Optuna-tuned XGBoost classifier saved as:
+
+```text
+model/xgb_model.pkl
+```
+
+The scaler is saved as:
+
+```text
+model/scaler.pkl
+```
+
+The feature order is saved as:
+
+```text
+model/features.json
+```
+
+## Generated Visualizations
+
+The Colab notebook generates the following visual outputs:
+
+```text
+eda_plots.png
+model_comparison.png
+roc_curves.png
+shap_summary.png
+shap_importance.png
+shap_dependence.png
+shap_waterfall.png
+```
+
+## Model Explainability
+
+SHAP is used to explain model predictions.
+
+Included explanation files:
+
+- `shap_summary.png`: overall feature impact
+- `shap_importance.png`: mean absolute SHAP feature importance
+- `shap_dependence.png`: dependence plot for the most important feature
+- `shap_waterfall.png`: explanation for one sample patient prediction
+
+## MLflow Tracking
+
+The notebook logs model experiments to MLflow using:
+
+- accuracy
+- F1 score
+- ROC-AUC
+- model parameters
+- trained model artifacts
+
+MLflow is used to compare:
+
+- Logistic Regression
+- Random Forest
+- XGBoost
+- XGBoost Tuned
+- LightGBM
+
+## Run API Locally
 
 Install dependencies:
 
@@ -67,15 +211,13 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-## Run The API Locally
-
 Start the FastAPI server:
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Open the interactive API documentation:
+Open API docs:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -96,30 +238,36 @@ Expected response:
 }
 ```
 
-## Test Prediction Endpoint
+## Prediction API
 
-Use this sample request:
+Endpoint:
+
+```text
+POST /predict
+```
+
+Sample request:
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/predict" \
   -H "Content-Type: application/json" \
   -d '{
-    "age": 60,
+    "age": 65,
     "anaemia": 1,
-    "creatinine_phosphokinase": 582,
+    "creatinine_phosphokinase": 250,
     "diabetes": 0,
-    "ejection_fraction": 38,
+    "ejection_fraction": 25,
     "high_blood_pressure": 1,
-    "platelets": 265000,
-    "serum_creatinine": 1.9,
+    "platelets": 200000,
+    "serum_creatinine": 2.0,
     "serum_sodium": 130,
     "sex": 1,
     "smoking": 0,
-    "time": 4
+    "time": 30
   }'
 ```
 
-Example response:
+Sample response:
 
 ```json
 {
@@ -156,31 +304,21 @@ http://127.0.0.1:8000/docs
 docker-compose up --build
 ```
 
-Stop the service:
+Stop the container:
 
 ```bash
 docker-compose down
 ```
 
-## Model Explainability
+## GitHub Upload Instructions
 
-The project includes SHAP-based explainability outputs:
-
-- `shap_summary.png`: Global feature impact summary
-- `shap_importance.png`: Feature importance ranking
-- `shap_dependence.png`: Relationship between key feature values and predictions
-- `shap_waterfall.png`: Individual prediction explanation
-
-These plots help make the model more transparent and easier to explain in interviews, portfolio reviews, and project demonstrations.
-
-## GitHub Upload Steps
-
-From the project folder:
+If you are uploading the generated `github_upload` folder to GitHub:
 
 ```bash
+cd github_upload
 git init
 git add .
-git commit -m "Upgrade heart failure prediction project"
+git commit -m "Add upgraded heart failure prediction project"
 git branch -M main
 git remote add origin https://github.com/alwinpaul111/Heart-Disease-Prediction.git
 git push -u origin main
@@ -193,7 +331,29 @@ git remote set-url origin https://github.com/alwinpaul111/Heart-Disease-Predicti
 git push -u origin main
 ```
 
+## Final Output Files
+
+After running the Colab notebook, the final upload package contains:
+
+```text
+main.py
+Dockerfile
+docker-compose.yml
+requirements.txt
+heart.csv
+model/xgb_model.pkl
+model/scaler.pkl
+model/features.json
+eda_plots.png
+model_comparison.png
+roc_curves.png
+shap_summary.png
+shap_importance.png
+shap_waterfall.png
+shap_dependence.png
+```
+
 ## Important Note
 
-This project is for educational and portfolio purposes only. It should not be used for real medical decisions without clinical validation, bias testing, regulatory review, and continuous monitoring.
+This project is for educational and portfolio use only. It is not intended for real medical diagnosis or clinical decision-making. A production medical ML system would require clinical validation, fairness checks, monitoring, security controls, and regulatory review.
 
