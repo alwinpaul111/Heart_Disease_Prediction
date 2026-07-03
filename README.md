@@ -211,4 +211,4 @@ This repository includes `.gitattributes` so GitHub prioritizes Python over the 
 
 ## Note
 
-This project is for learning and portfolio purposes only. It should not be used for real medical decisions without clinical validation, bias testing, monitoring, security review, and regulatory approval.
+
