@@ -209,6 +209,6 @@ This repository includes `.gitattributes` so GitHub prioritizes Python over the 
 *.py linguist-detectable=true
 ```
 
-## Note
+
 
 
