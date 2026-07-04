@@ -91,7 +91,7 @@ model/features.json
 
 These files store the trained XGBoost model, fitted scaler, and expected feature order.
 
-## Visual Outputs
+## Visual Output
 
 Generated plots are stored in `images/`:
 
