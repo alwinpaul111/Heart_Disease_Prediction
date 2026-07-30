@@ -57,13 +57,13 @@ HeartDisease
 
 ## Notebook Workflow
 
-The full model development workflow is available in:
+The full model development workflow is available in:-
 
 ```text
 notebooks/Heart_Disease_Prediction_UPGRADED.ipynb
 ```
 
-The notebook covers:
+The notebook covers:-
 
 - data loading
 - exploratory data analysis
