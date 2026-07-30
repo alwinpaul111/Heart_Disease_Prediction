@@ -1,6 +1,6 @@
 #  Heart Disease Prediction
 
-An upgraded machine learning project for predicting heart disease risk from clinical health indicators. The project started as a Google Colab notebook and has been organized into a cleaner repository with a Python FastAPI app, saved model artifacts, Docker support, and model explainability outputs.
+An upgraded machine learning project for predicting heart disease risk from clinical health indicators. The project started as a Google Colab notebook and has been organized into a cleaner repository with a Python FastAPI app, saved model artifacts, Docker support, and model explainability outputs
 
 ## Highlights
 
