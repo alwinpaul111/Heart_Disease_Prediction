@@ -81,7 +81,7 @@ The notebook covers:-
 
 ## Model Artifacts
 
-The deployed API uses:
+The deployed API uses:-
 
 ```text
 model/xgb_model.pkl
