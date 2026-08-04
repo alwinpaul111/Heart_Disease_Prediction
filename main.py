@@ -64,11 +64,6 @@ def predict(patient: PatientData):
              # For API, these columns will not be in `data` as defined in PatientData
             pass # This part of the code needs to be adapted or removed if PatientData does not include them directly.
 
-    # The PatientData model does not include ChestPainType, RestingECG, ST_Slope, ExerciseAngina.
-    # To correctly handle one-hot encoding, these columns need to be part of the input data or handled differently.
-    # For this example, I'm assuming the model was trained with the one-hot encoded columns directly,
-    # and the API needs to match that structure. Since the PatientData does not define them, this will cause a mismatch.
-    # I will create a dummy input DataFrame with the same columns as the training data, filling with zeros if not provided.
 
     processed_data = {}
     for feature in FEATURE_NAMES:
