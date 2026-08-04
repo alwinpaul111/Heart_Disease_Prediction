@@ -46,7 +46,7 @@ def predict(patient: PatientData):
 
     data = patient.dict()
 
-    # Feature engineering (same as training)
+    # Feature engineering 
     data["creatinine_phosphokinase_log"] = np.log1p(data["creatinine_phosphokinase"])
     data["serum_creatinine_log"]         = np.log1p(data["serum_creatinine"])
     data["age_ejection_interaction"]     = data["age"] * data["ejection_fraction"]
