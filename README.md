@@ -43,7 +43,7 @@ An upgraded machine learning project for predicting heart disease risk from clin
 
 ## Dataset
 
-The dataset is stored at:-
+The dataset is stored at :-
 
 ```text
 data/heart.csv
